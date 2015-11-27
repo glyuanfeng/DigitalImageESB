@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:pfx0="http://GEWDigitalImage.com/WebService-SQLInterface" xmlns:pfx1="http://GEWDigitalImage.com/WebService" xmlns:tns="http://www.example.com/1447232524633" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.com/1447232524633">
+    <import namespace="http://GEWDigitalImage.com/WebService" location="../Resources/Schemas/WebService/Schema-GetCloudUrl.xsd"/>
+    <import namespace="http://GEWDigitalImage.com/WebService-SQLInterface" location="../Resources/Schemas/WebService/Schema-SQLInterface.xsd"/>
+    <message name="SQLInterface">
+        <part element="pfx0:SQLInterface" name="parameters"/>
+    </message>
+    <message name="SQLInterfaceResponse">
+        <part element="pfx0:SQLInterfaceResponse" name="parameters"/>
+    </message>
+    <message name="getCloudUrl">
+        <part element="pfx1:getCloudUrl" name="parameters"/>
+    </message>
+    <message name="getCloudUrlResponse">
+        <part element="pfx1:getCloudUrlResponse" name="parameters"/>
+    </message>
+    <portType name="portType">
+        <operation name="SQLInterfaceOp">
+            <input message="tns:SQLInterface"/>
+            <output message="tns:SQLInterfaceResponse"/>
+        </operation>
+        <operation name="GetColudUrlOp">
+            <input message="tns:getCloudUrl"/>
+            <output message="tns:getCloudUrlResponse"/>
+        </operation>
+    </portType>
+</definitions>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://GEWDigitalImage.com/WebService" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://GEWDigitalImage.com/WebService">
+    <wsdl:types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://GEWDigitalImage.com/WebService/import/">
+			<s:import schemaLocation="Schema-GetCloudUrl.xsd"   namespace="http://GEWDigitalImage.com/WebService" />
+		</s:schema>
+    </wsdl:types>
+    <wsdl:message name="HelloWorldSoapIn">
+        <wsdl:part name="parameters" element="tns:HelloWorld"/>
+    </wsdl:message>
+    <wsdl:message name="HelloWorldSoapOut">
+        <wsdl:part name="parameters" element="tns:HelloWorldResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getCloudUrlSoapIn">
+        <wsdl:part name="parameters" element="tns:getCloudUrl"/>
+    </wsdl:message>
+    <wsdl:message name="getCloudUrlSoapOut">
+        <wsdl:part name="parameters" element="tns:getCloudUrlResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getCloudUrlCredentialSoapHeader">
+        <wsdl:part name="CredentialSoapHeader" element="tns:CredentialSoapHeader"/>
+    </wsdl:message>
+    <wsdl:message name="SQLInterfaceSoapIn">
+        <wsdl:part name="parameters" element="tns:SQLInterface"/>
+    </wsdl:message>
+    <wsdl:message name="SQLInterfaceSoapOut">
+        <wsdl:part name="parameters" element="tns:SQLInterfaceResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SQLInterfaceCredentialSoapHeader">
+        <wsdl:part name="CredentialSoapHeader" element="tns:CredentialSoapHeader"/>
+    </wsdl:message>
+    <wsdl:portType name="GEWDigitalImageServiceSoap">
+        <wsdl:operation name="HelloWorld">
+            <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Hello</wsdl:documentation>
+            <wsdl:input message="tns:HelloWorldSoapIn"/>
+            <wsdl:output message="tns:HelloWorldSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="getCloudUrl">
+            <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取云端品名图片地址</wsdl:documentation>
+            <wsdl:input message="tns:getCloudUrlSoapIn"/>
+            <wsdl:output message="tns:getCloudUrlSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="SQLInterface">
+            <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">SQL访问及处理通用接口，详见&lt;a href='SQLInterface.html'&gt;说明文档&lt;/a&gt;</wsdl:documentation>
+            <wsdl:input message="tns:SQLInterfaceSoapIn"/>
+            <wsdl:output message="tns:SQLInterfaceSoapOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GEWDigitalImageServiceSoap" type="tns:GEWDigitalImageServiceSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="HelloWorld">
+            <soap:operation soapAction="http://GEWDigitalImage.com/WebService/HelloWorld" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCloudUrl">
+            <soap:operation soapAction="http://GEWDigitalImage.com/WebService/getCloudUrl" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+                <soap:header message="tns:getCloudUrlCredentialSoapHeader" part="CredentialSoapHeader" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SQLInterface">
+            <soap:operation soapAction="http://GEWDigitalImage.com/WebService/SQLInterface" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+                <soap:header message="tns:SQLInterfaceCredentialSoapHeader" part="CredentialSoapHeader" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="GEWDigitalImageServiceSoap12" type="tns:GEWDigitalImageServiceSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="HelloWorld">
+            <soap12:operation soapAction="http://GEWDigitalImage.com/WebService/HelloWorld" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCloudUrl">
+            <soap12:operation soapAction="http://GEWDigitalImage.com/WebService/getCloudUrl" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+                <soap12:header message="tns:getCloudUrlCredentialSoapHeader" part="CredentialSoapHeader" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SQLInterface">
+            <soap12:operation soapAction="http://GEWDigitalImage.com/WebService/SQLInterface" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+                <soap12:header message="tns:SQLInterfaceCredentialSoapHeader" part="CredentialSoapHeader" use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GEWDigitalImageService">
+        <wsdl:port name="GEWDigitalImageServiceSoap" binding="tns:GEWDigitalImageServiceSoap">
+            <soap:address location="http://10.20.252.16/GEWDigitalImageService/GEWDigitalImageService.asmx"/>
+        </wsdl:port>
+        <wsdl:port name="GEWDigitalImageServiceSoap12" binding="tns:GEWDigitalImageServiceSoap12">
+            <soap12:address location="http://10.20.252.16/GEWDigitalImageService/GEWDigitalImageService.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

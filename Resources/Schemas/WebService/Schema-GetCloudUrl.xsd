@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<s:schema xmlns:s="http://www.w3.org/2001/XMLSchema"
+	 xmlns:tns="http://GEWDigitalImage.com/WebService"
+	 targetNamespace="http://GEWDigitalImage.com/WebService"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<s:element name="HelloWorld">
+		<s:complexType/>
+	</s:element>
+	<s:element name="HelloWorldResponse">
+		<s:complexType>
+			<s:sequence>
+				<s:element name="HelloWorldResult" type="s:string" minOccurs="0"/>
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="getCloudUrl">
+		<s:complexType>
+			<s:sequence>
+				<s:element name="MIS" type="s:string" minOccurs="0"/>
+				<s:element name="ProductCode" type="s:string" minOccurs="0"/>
+				<s:element name="Seq" type="s:string" minOccurs="0"/>
+				<s:element name="Width" type="s:string" minOccurs="0"/>
+				<s:element name="Height" type="s:string" minOccurs="0"/>
+				<s:element name="DPI" type="s:string" minOccurs="0"/>
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="getCloudUrlResponse">
+		<s:complexType>
+			<s:sequence>
+				<s:element name="getCloudUrlResult" type="s:string" minOccurs="0"/>
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="CredentialSoapHeader" type="tns:CredentialSoapHeader"/>
+	<s:complexType name="CredentialSoapHeader">
+		<s:sequence>
+			<s:element name="UserID" type="s:string" minOccurs="0"/>
+			<s:element name="PassWord" type="s:string" minOccurs="0"/>
+		</s:sequence>
+		<s:anyAttribute namespace="##any" processContents="strict"/>
+	</s:complexType>
+	<s:element name="SQLInterface">
+		<s:complexType>
+			<s:sequence>
+				<s:element name="ProcessName" type="s:string" minOccurs="0"/>
+				<s:element name="ParmValues" type="s:string" minOccurs="0"/>
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+	<s:element name="SQLInterfaceResponse">
+		<s:complexType>
+			<s:sequence>
+				<s:element name="SQLInterfaceResult" type="s:string" minOccurs="0"/>
+			</s:sequence>
+		</s:complexType>
+	</s:element>
+</s:schema>

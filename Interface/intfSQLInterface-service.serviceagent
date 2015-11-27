@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceResource xmlns:wsdl="http://www.example.com/1447232524633">
+    <ns0:import xmlns:ns0="http://schemas.xmlsoap.org/wsdl/" namespace="http://www.example.com/1447232524633" location="/Interface/intfSQLInterface.wsdl"/>
+    <config>
+        <wsdl namespace="http://xmlns.example.com/1447232530664" embedWsdlComponents="true" embedSchemaComponents="true" embedJndiProperties="false"/>
+        <class>com.tibco.bw.service.serviceAgent.ServiceServiceAgent</class>
+        <name>intfSQLInterface-service</name>
+        <resourceType>service.definition</resourceType>
+        <implType>bw</implType>
+        <groups>
+            <row isDefault="true" groupName="Default"/>
+        </groups>
+        <interfaceImpl>
+            <tab>
+                <tabName>portType</tabName>
+                <tabType>bw</tabType>
+                <config>
+                    <wsdlDetail location="/Interface/intfSQLInterface.wsdl" portType="portType" ns="http://www.example.com/1447232524633"/>
+                    <detail>
+                        <tab>
+                            <tabName>service.definition.impl.tab.label</tabName>
+                            <tabType>impl</tabType>
+                            <config>
+                                <operations>
+                                    <row opName="SQLInterfaceOp" opImpl="/Interface/wsSQLInterface.process"/>
+                                    <row opName="GetColudUrlOp" opImpl="/Interface/wsGetColudUrl.process"/>
+                                </operations>
+                            </config>
+                        </tab>
+                        <tab>
+                            <tabName>service.definition.ep.tab.label</tabName>
+                            <tabType>ep</tabType>
+                            <config>
+                                <epBindings>
+                                    <row epName="intfwsSQLInterfaceEndpoint2" epType="soap">
+                                        <config>
+                                            <epDetail>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.transport.tab.label</tabName>
+                                                    <tabType>transport</tabType>
+                                                    <config>
+                                                        <sharedChannel>/Resources/Connection/DigitalImageHttpConn.sharedhttp</sharedChannel>
+                                                        <transport>
+                                                            <config>
+                                                                <useBasicAuthentication>false</useBasicAuthentication>
+                                                                <httpURI>/Interface/intfSQLInterface-service.serviceagent/intfwsSQLInterfaceEndpoint2</httpURI>
+                                                            </config>
+                                                        </transport>
+                                                    </config>
+                                                </tab>
+                                                <tab>
+                                                    <tabName>soap.service.transport.ui.details.tab.label</tabName>
+                                                    <tabType>details</tabType>
+                                                    <config>
+                                                        <operationStyle>document</operationStyle>
+                                                        <soapVersion>SOAP 1.1</soapVersion>
+                                                        <soap>
+                                                            <operation name="SQLInterfaceOp">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>/Interface/intfSQLInterface-service.serviceagent/intfwsSQLInterfaceEndpoint2/SQLInterfaceOp</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                            <operation name="GetColudUrlOp">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>/Interface/intfSQLInterface-service.serviceagent/intfwsSQLInterfaceEndpoint2/GetColudUrlOp</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                        </soap>
+                                                    </config>
+                                                </tab>
+                                            </epDetail>
+                                        </config>
+                                    </row>
+                                </epBindings>
+                            </config>
+                        </tab>
+                    </detail>
+                </config>
+            </tab>
+        </interfaceImpl>
+    </config>
+</serviceResource>

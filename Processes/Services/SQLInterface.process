@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:pfx3="http://GEWDigitalImage.com/WebService--SQLInterface" xmlns:pfx2="http://GEWDigitalImage.com/WebService-SQLInterface" xmlns:pfx="http://GEWDigitalImage.com/WebService">
+    <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema" namespace="http://GEWDigitalImage.com/WebService-SQLInterface" schemaLocation="/Resources/Schemas/WebService/Schema-SQLInterface.xsd"/>
+    <wsdl:import namespace="http://GEWDigitalImage.com/WebService" location="/Resources/Schemas/WebService/generatedName.wsdl"/>
+    <pd:name>Processes/Services/SQLInterface.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx2:SQLInterface"/>
+    <pd:startX>140</pd:startX>
+    <pd:startY>78</pd:startY>
+    <pd:returnBindings>
+        <pfx2:SQLInterfaceResponse>
+            <xsl:if test="$SOAPRequestReply/outputMessage/pfx:SQLInterfaceResponse/pfx:SQLInterfaceResult">
+                <pfx2:SQLInterfaceResult>
+                    <xsl:value-of select="$SOAPRequestReply/outputMessage/pfx:SQLInterfaceResponse/pfx:SQLInterfaceResult"/>
+                </pfx2:SQLInterfaceResult>
+            </xsl:if>
+        </pfx2:SQLInterfaceResponse>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx2:SQLInterfaceResponse"/>
+    <pd:endX>500</pd:endX>
+    <pd:endY>80</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1446776185633</pd:targetNamespace>
+    <pd:activity name="SOAPRequestReply">
+        <pd:type>com.tibco.plugin.soap.SOAPSendReceiveActivity</pd:type>
+        <pd:resourceType>ae.activities.SOAPSendReceiveUI</pd:resourceType>
+        <pd:x>313</pd:x>
+        <pd:y>67</pd:y>
+        <config>
+            <timeout>0</timeout>
+            <soapAttachmentStyle>SwA</soapAttachmentStyle>
+            <timeoutType>Seconds</timeoutType>
+            <service>pfx:GEWDigitalImageService</service>
+            <servicePort>GEWDigitalImageServiceSoap</servicePort>
+            <operation>SQLInterface</operation>
+            <soapAction>http://GEWDigitalImage.com/WebService/SQLInterface</soapAction>
+            <endpointURL>http://10.20.252.16/GEWDigitalImageService/GEWDigitalImageService.asmx</endpointURL>
+            <authScheme>NONE</authScheme>
+        </config>
+        <pd:inputBindings>
+            <inputMessage>
+                <pfx:SQLInterface>
+                    <pfx:ProcessName>
+                        <xsl:value-of select="$Start/pfx2:SQLInterface/pfx2:ProcessName"/>
+                    </pfx:ProcessName>
+                    <pfx:ParmValues>
+                        <xsl:value-of select="$Start/pfx2:SQLInterface/pfx2:ParmValues"/>
+                    </pfx:ParmValues>
+                </pfx:SQLInterface>
+            </inputMessage>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>SOAPRequestReply</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SOAPRequestReply</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

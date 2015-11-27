@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:pfx5="http://www.tibco.com/schemas/DigitalImageWebService/Resources/Schemas/Schema_Cloud.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pfx4="http://xmlns.example.com/1445227392993" xmlns:pfx3="http://www.tibco.com/schemas/DigitalImageWebService/Resources/Schemas/Schema.xsd" xmlns:pfx2="http://www.tibco.com/schemas/DigitalImageWebService/Resources/Schemas/Schema.xsd2" xmlns:pfx8="http://GEWDigitalImage.com/WebService-GetCloudUrl" xmlns:pfx7="http://www.tibco.com/schemas/DigitalImageESB/Resources/Schemas/WebService/Schema.xsd" xmlns:pfx="http://GEWDigitalImage.com/WebService" xmlns:pfx6="http://GEWDigitalImage.com/WebService_1">
+    <xsd:import namespace="http://www.tibco.com/schemas/DigitalImageWebService/Resources/Schemas/Schema.xsd2"/>
+    <xsd:import namespace="http://www.tibco.com/schemas/DigitalImageWebService/Resources/Schemas/Schema_Cloud.xsd" schemaLocation="/Resources/Schemas/ESB_DigitalImage_GetCloudUrl.xsd"/>
+    <xsd:import namespace="http://GEWDigitalImage.com/WebService" schemaLocation="/Resources/Schemas/WebService/Schema-GetCloudUrl.xsd"/>
+    <wsdl:import namespace="http://GEWDigitalImage.com/WebService" location="/Resources/Schemas/WebService/generatedName.wsdl"/>
+    <pd:name>Processes/Services/GetColudUrl.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx:getCloudUrl"/>
+    <pd:startX>120</pd:startX>
+    <pd:startY>71</pd:startY>
+    <pd:returnBindings>
+        <pfx:getCloudUrlResponse>
+            <xsl:if test="$SOAPRequestReply/outputMessage/pfx:getCloudUrlResponse/pfx:getCloudUrlResult">
+                <pfx:getCloudUrlResult>
+                    <xsl:value-of select="$SOAPRequestReply/outputMessage/pfx:getCloudUrlResponse/pfx:getCloudUrlResult"/>
+                </pfx:getCloudUrlResult>
+            </xsl:if>
+        </pfx:getCloudUrlResponse>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx:getCloudUrlResponse"/>
+    <pd:endX>503</pd:endX>
+    <pd:endY>71</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1445223082276</pd:targetNamespace>
+    <pd:activity name="SOAPRequestReply">
+        <pd:type>com.tibco.plugin.soap.SOAPSendReceiveActivity</pd:type>
+        <pd:resourceType>ae.activities.SOAPSendReceiveUI</pd:resourceType>
+        <pd:x>310</pd:x>
+        <pd:y>92</pd:y>
+        <config>
+            <timeout>0</timeout>
+            <soapAttachmentStyle>SwA</soapAttachmentStyle>
+            <timeoutType>Seconds</timeoutType>
+            <service>pfx:GEWDigitalImageService</service>
+            <servicePort>GEWDigitalImageServiceSoap</servicePort>
+            <operation>getCloudUrl</operation>
+            <soapAction>http://GEWDigitalImage.com/WebService/getCloudUrl</soapAction>
+            <endpointURL>http://10.20.252.16/GEWDigitalImageService/GEWDigitalImageService.asmx</endpointURL>
+            <authScheme>NONE</authScheme>
+        </config>
+        <pd:inputBindings>
+            <inputMessage>
+                <pfx:getCloudUrl>
+                    <pfx:MIS>
+                        <xsl:value-of select="$Start/pfx:getCloudUrl/pfx:MIS"/>
+                    </pfx:MIS>
+                    <pfx:ProductCode>
+                        <xsl:value-of select="$Start/pfx:getCloudUrl/pfx:ProductCode"/>
+                    </pfx:ProductCode>
+                    <pfx:Seq>
+                        <xsl:value-of select="$Start/pfx:getCloudUrl/pfx:Seq"/>
+                    </pfx:Seq>
+                    <pfx:Width>
+                        <xsl:value-of select="$Start/pfx:getCloudUrl/pfx:Width"/>
+                    </pfx:Width>
+                    <pfx:Height>
+                        <xsl:value-of select="$Start/pfx:getCloudUrl/pfx:Height"/>
+                    </pfx:Height>
+                    <pfx:DPI>
+                        <xsl:value-of select="$Start/pfx:getCloudUrl/pfx:DPI"/>
+                    </pfx:DPI>
+                </pfx:getCloudUrl>
+            </inputMessage>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>SOAPRequestReply</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>SOAPRequestReply</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

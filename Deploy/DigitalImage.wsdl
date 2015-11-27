@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:ns1="http://GEWDigitalImage.com/WebService-SQLInterface" xmlns:tns="http://xmlns.example.com/1447232530664" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns0="http://GEWDigitalImage.com/WebService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://xmlns.example.com/1447232530664">
+    <wsdl:types>
+        <s:schema xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://GEWDigitalImage.com/WebService-SQLInterface" targetNamespace="http://GEWDigitalImage.com/WebService-SQLInterface" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <s:complexType name="CredentialSoapHeader">
+                <s:sequence>
+                    <s:element name="UserID" type="s:string" minOccurs="0"/>
+                    <s:element name="PassWord" type="s:string" minOccurs="0"/>
+                </s:sequence>
+                <s:anyAttribute processContents="strict" namespace="##any"/>
+            </s:complexType>
+            <s:element name="CredentialSoapHeader" type="tns:CredentialSoapHeader"/>
+            <s:element name="HelloWorld">
+                <s:complexType/>
+            </s:element>
+            <s:element name="HelloWorldResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="HelloWorldResult" type="s:string" minOccurs="0"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SQLInterface">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="ProcessName" type="s:string" minOccurs="0"/>
+                        <s:element name="ParmValues" type="s:string" minOccurs="0"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SQLInterfaceResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="SQLInterfaceResult" type="s:string" minOccurs="0"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getCloudUrl">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="MIS" type="s:string" minOccurs="0"/>
+                        <s:element name="ProductCode" type="s:string" minOccurs="0"/>
+                        <s:element name="Seq" type="s:string" minOccurs="0"/>
+                        <s:element name="Width" type="s:string" minOccurs="0"/>
+                        <s:element name="Height" type="s:string" minOccurs="0"/>
+                        <s:element name="DPI" type="s:string" minOccurs="0"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getCloudUrlResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getCloudUrlResult" type="s:string" minOccurs="0"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+        <s:schema xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://GEWDigitalImage.com/WebService" targetNamespace="http://GEWDigitalImage.com/WebService" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <s:complexType name="CredentialSoapHeader">
+                <s:sequence>
+                    <s:element name="UserID" type="s:string" minOccurs="0"/>
+                    <s:element name="PassWord" type="s:string" minOccurs="0"/>
+                </s:sequence>
+                <s:anyAttribute processContents="strict" namespace="##any"/>
+            </s:complexType>
+            <s:element name="CredentialSoapHeader" type="tns:CredentialSoapHeader"/>
+            <s:element name="HelloWorld">
+                <s:complexType/>
+            </s:element>
+            <s:element name="HelloWorldResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="HelloWorldResult" type="s:string" minOccurs="0"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SQLInterface">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="ProcessName" type="s:string" minOccurs="0"/>
+                        <s:element name="ParmValues" type="s:string" minOccurs="0"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="SQLInterfaceResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="SQLInterfaceResult" type="s:string" minOccurs="0"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getCloudUrl">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="MIS" type="s:string" minOccurs="0"/>
+                        <s:element name="ProductCode" type="s:string" minOccurs="0"/>
+                        <s:element name="Seq" type="s:string" minOccurs="0"/>
+                        <s:element name="Width" type="s:string" minOccurs="0"/>
+                        <s:element name="Height" type="s:string" minOccurs="0"/>
+                        <s:element name="DPI" type="s:string" minOccurs="0"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="getCloudUrlResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element name="getCloudUrlResult" type="s:string" minOccurs="0"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:service name="intfSQLInterface-service">
+        <wsdl:port name="intfwsSQLInterfaceEndpoint2" binding="tns:intfwsSQLInterfaceEndpoint2Binding">
+            <soap:address location="http://localhost:6121/Interface/intfSQLInterface-service.serviceagent/intfwsSQLInterfaceEndpoint2"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="portType">
+        <wsdl:operation name="GetColudUrlOp">
+            <wsdl:input message="tns:getCloudUrl"/>
+            <wsdl:output message="tns:getCloudUrlResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="SQLInterfaceOp">
+            <wsdl:input message="tns:SQLInterface"/>
+            <wsdl:output message="tns:SQLInterfaceResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="intfwsSQLInterfaceEndpoint2Binding" type="tns:portType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetColudUrlOp">
+            <soap:operation style="document" soapAction="/Interface/intfSQLInterface-service.serviceagent/intfwsSQLInterfaceEndpoint2/GetColudUrlOp"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SQLInterfaceOp">
+            <soap:operation style="document" soapAction="/Interface/intfSQLInterface-service.serviceagent/intfwsSQLInterfaceEndpoint2/SQLInterfaceOp"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="getCloudUrl">
+        <wsdl:part name="parameters" element="ns0:getCloudUrl"/>
+    </wsdl:message>
+    <wsdl:message name="getCloudUrlResponse">
+        <wsdl:part name="parameters" element="ns0:getCloudUrlResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SQLInterface">
+        <wsdl:part name="parameters" element="ns1:SQLInterface"/>
+    </wsdl:message>
+    <wsdl:message name="SQLInterfaceResponse">
+        <wsdl:part name="parameters" element="ns1:SQLInterfaceResponse"/>
+    </wsdl:message>
+</wsdl:definitions>
